@@ -1,0 +1,16 @@
+{
+  "name": "q4",
+  "version": "1.0.0",
+  "description": " Write an express application that returns the result of adding two numbers provided by the user",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yordanos",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
+}
