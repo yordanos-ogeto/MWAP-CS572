@@ -15,11 +15,9 @@ module.exports.getAllGame = function (req, res) {
 
   collection
     .find()
-    .skip(offset)
     .limit(count)
     .toArray(function (err, docs) {
       console.log("Found games", docs);
       res.status(200).json(docs);
     });
-  s;
 };
