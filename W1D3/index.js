@@ -15,5 +15,5 @@ app.use(function (req, res, next) {
 });
 app.use("/api", router);
 const server = app.listen(process.env.PORT, function () {
-  console.log("Listening to port : " + server.address().port);
+  console.log("listening to port : " + server.address().port);
 });
