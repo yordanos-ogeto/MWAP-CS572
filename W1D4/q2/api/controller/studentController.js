@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Student = mongoose.model("Student");
 module.exports.getAllStudent = function (req, res) {
-  // console.log("Get the Game");
+  // console.log("Get the student");
   // console.log(req.query);
   let offset = 0;
   let count = 5;
@@ -25,14 +25,14 @@ module.exports.getAllStudent = function (req, res) {
     });
 };
 module.exports.getAllStudentById = function (req, res) {
-  Game.findById(req.params.studentId).exec(function (err, doc) {
+  Student.findById(req.params.studentId).exec(function (err, doc) {
     res.status(200).json(doc);
   });
 };
 
 module.exports.studentGetOne = function (req, res) {
   const studentId = req.params.gameId;
-  Game.findById(studentId).exec(function (err, student) {
+  Student.findById(studentId).exec(function (err, student) {
     console.log("Found Student", student);
     res.status(200).json(student);
   });
