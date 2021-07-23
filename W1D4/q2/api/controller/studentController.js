@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Student = mongoose.model("stu");
+const Student = mongoose.model("Student");
 module.exports.getAllStudent = function (req, res) {
   // console.log("Get the Game");
   // console.log(req.query);
