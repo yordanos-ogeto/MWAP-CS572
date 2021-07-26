@@ -59,23 +59,31 @@ module.exports.gameGetOne = function (req, res) {
 };
 
 module.exports.addOneGame = function (req, res) {
-  console.log("post new game");
-  console.log("req.body");
   const newGame = {
     title: req.body.title,
-    price: parseFloat(req.body.price),
     year: parseInt(req.body.year),
-    minPlayer: parseInt(req.body.minPlayer),
-    maxPlayer: parseInt(req.body.maxPlayer),
-    rate: parseInt(req.body.rate),
-    designer: [req.body.designer],
+    rate: parseFloat(req.body.rate),
+    price: parseFloat(req.body.price),
+    minPlayers: parseInt(req.body.minPlayers),
+    maxPlayers: parseInt(req.body.maxPlayers),
+    minAge: parseInt(req.body.minAge),
+    deisgneres: [],
     publisher: {},
   };
-  Game.create(newGame, function (err, game) {
+
+  Game.create(newGame, function (err, createdResponse) {
     const response = {
       status: 201,
-      message: game,
+      message: createdResponse,
     };
+    if (err) {
+      response.status = 500;
+      response.message =
+        "Error while creating a game, Please try again." + err.message;
+    } else if (!createdResponse) {
+      response.status = 404;
+      response.message = "Error while creating a game, Please try again.";
+    }
     res.status(response.status).json(response.message);
   });
 };

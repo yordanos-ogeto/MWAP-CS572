@@ -51,59 +51,58 @@ module.exports.getGameReviews = function (req, res) {
 
 module.exports.createReview = function (req, res) {
   console.log("creating review");
-
-  Game.findById(req.params.gameId)
-    .select("reviews")
-    .exec(function (err, doc) {
-      console.log("game for review", doc);
-      const response = {
-        status: 200,
-      };
-      if (err) {
-        response.status = 500;
-        response.message = err;
-      } else if (!doc) {
-        response.status = 404;
-        response.message = { message: "Your requested unavailable resource" };
-      }
-
-      if (response.status !== 200) {
-        res.status(response.status).json(response.message);
-        return;
-      }
-
-      addReviewToGame(doc, req, res);
-    });
-};
-
-function addReviewToGame(game, req, res) {
-  console.log("adding review");
-
-  const review = {
+  const newReview = {
     name: req.body.name,
+    date: req.body.date,
     review: req.body.review,
-    rating: req.body.rating,
   };
-  if (!game.reviews) {
-    game.reviews = [];
-  }
-
-  game.reviews.push(review);
-
-  console.log(game.reviews, review);
-
-  game.save(function (err, updt) {
+  Game.updateOne(
+    { _id: req.params.gameId },
+    { $push: { reviews: newReview } }
+  ).exec(function (err, doc) {
+    console.log("game for review", doc);
     const response = {
-      status: 500,
-      message: err,
+      status: 201,
     };
-    if (updt) {
-      response.status = 201;
-      response.message = updt.reviews;
+    if (err) {
+      response.status = 500;
+      response.message = err;
+    } else if (!doc) {
+      response.status = 404;
+      response.message = { message: "Your requested unavailable resource" };
     }
     res.status(response.status).json(response.message);
   });
-}
+};
+
+// function addReviewToGame(game, req, res) {
+//   console.log("adding review");
+
+//   const review = {
+//     name: req.body.name,
+//     review: req.body.review,
+//     rating: req.body.rating,
+//   };
+//   if (!game.reviews) {
+//     game.reviews = [];
+//   }
+
+//   game.reviews.push(review);
+
+//   console.log(game.reviews, review);
+
+//   game.save(function (err, updt) {
+//     const response = {
+//       status: 500,
+//       message: err,
+//     };
+//     if (updt) {
+//       response.status = 201;
+//       response.message = updt.reviews;
+//     }
+//     res.status(response.status).json(response.message);
+//   });
+// }
 
 module.exports.reviewFullyUpdate = function (req, res) {
   console.log(`Performing full update on review`);

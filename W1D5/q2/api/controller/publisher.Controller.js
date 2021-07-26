@@ -2,15 +2,26 @@ const mongoose = require("mongoose");
 const Game = mongoose.model("Game");
 
 module.exports.publisherGetOne = function (req, res) {
-  const gameID = req.params.gameID;
-  const publisherId = req.params.publisherId;
-  console.log("ID ", publisherId);
-
-  Game.findById(gameID, function (err, game) {
-    const doc = game.publisher.id(publisherId);
-    console.log(doc);
-    res.status(200).json(doc);
-  });
+  console.log("publisherGetOne");
+  const gameID = req.params.gameId;
+  Game.findById(gameID)
+    .select("publisher")
+    .exec(function (err, game) {
+      const response = {
+        status: 200,
+        message: game,
+      };
+      if (err) {
+        response.status = 500;
+        response.message = err;
+      } else if (!game) {
+        response.status = 404;
+        response.message = { message: "game not found" };
+      } else {
+        response.message = game.publisher;
+      }
+      res.status(200).json(game.publisher);
+    });
 };
 
 module.exports.createPublisher = function (req, res) {
@@ -27,7 +38,9 @@ module.exports.createPublisher = function (req, res) {
         response.message = err;
       } else if (!doc) {
         response.status = 404;
-        response.message = { message: "Your requested unavailable resource" };
+        response.message = {
+          "message:": "Your requested unavailable resource",
+        };
       }
 
       if (response.status !== 200) {
@@ -69,18 +82,22 @@ function addPublisherToGame(game, req, res) {
   });
 }
 module.exports.publisherFUllUpdateOne = function (req, res) {
-  const gameID = req.params.gameID;
+  const gameID = req.params.gameId;
   Game.findByIdAndUpdate(gameID, {
     publisher: {
       name: req.body.name,
       address: req.body.address,
     },
   }).exec(function (err, game) {
-    console.log("Found Game ", game);
+    console.log("Found Game ", !game);
     if (err) {
+      console.log("error :", err);
       res.status(500).json(err);
+      return;
     } else if (!game) {
+      console.log("no game");
       res.status(404).json({ message: "GameId not found" });
+      return;
     }
 
     if (game) {
@@ -159,7 +176,7 @@ function patchUpdateGamePublisher(game, req, res) {
   });
 }
 module.exports.publisherDeleteOne = function (req, res) {
-  const gameID = req.params.gameID;
+  const gameID = req.params.gameId;
 
   Game.findById(gameID).exec(function (err, game) {
     console.log("Found Game ", game);

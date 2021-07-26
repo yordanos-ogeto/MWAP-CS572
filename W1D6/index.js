@@ -1,6 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 require("./api/data/db");
+
 const router = require("./api/router");
 
 const app = express();

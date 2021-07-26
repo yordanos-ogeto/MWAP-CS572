@@ -1,16 +1,21 @@
 const mongoose = require("mongoose");
+const reviewSchema = new mongoose.Schema({
+  name: {
+    type: String,
+  },
+  date: {
+    type: Date,
+  },
+  review: {
+    type: String,
+  },
+});
 const publisherSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
   },
-
-  location: {
-    address: String,
-    coordinate: {
-      type: [Number],
-      index: "2dshere",
-    },
+  country: {
+    type: String,
   },
 });
 const gameSchema = new mongoose.Schema({
@@ -38,6 +43,7 @@ const gameSchema = new mongoose.Schema({
   },
   minAge: Number,
   designer: [String],
-  publisher: publisherSchema,
+  publisher: { type: publisherSchema, default: {} },
+  reviews: [reviewSchema],
 });
 mongoose.model("Game", gameSchema, "games");

@@ -10,16 +10,16 @@ router
 router
   .route("/games/:gameId")
   .get(controllerGame.gameGetOne)
-  .put(controllerGame.fullUpdateGame)
-  .patch(controllerGame.partialUpdateGame)
+  .put(controllerGame.fullyUpdateGame)
+  .patch(controllerGame.PartialUpdateGame)
   .delete(controllerGame.gamesDeleteOne);
 
 router
-  .route("/game/:gameId/publisher")
+  .route("/games/:gameId/publisher")
   .get(publisherController.publisherGetOne)
+  .post(publisherController.createPublisher)
   .put(publisherController.publisherFUllUpdateOne)
   .patch(publisherController.partialUpdatePublisher)
-  .delete(publisherController.publisherDeleteOne)
-  .post(publisherController.createPublisher);
+  .delete(publisherController.publisherDeleteOne);
 
 module.exports = router;

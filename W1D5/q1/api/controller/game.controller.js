@@ -63,11 +63,11 @@ module.exports.addOneGame = function (req, res) {
   console.log("req.body");
   const newGame = {
     title: req.body.title,
-    price: parseFloat(req.body.price),
     year: parseInt(req.body.year),
+    rate: parseInt(req.body.rate),
+    price: parseFloat(req.body.price),
     minPlayer: parseInt(req.body.minPlayer),
     maxPlayer: parseInt(req.body.maxPlayer),
-    rate: parseInt(req.body.rate),
     designer: [req.body.designer],
     publisher: {},
   };
@@ -79,12 +79,12 @@ module.exports.addOneGame = function (req, res) {
     res.status(response.status).json(response.message);
   });
 };
-module.exports.fullUpdateGame = function (req, res) {
-  console.log(`Performing full update with properties ${req.body}`);
+module.exports.fullyUpdateGame = function (req, res) {
+  console.log(" fully updated " + req.body);
 
   Game.findById(req.params.gameId)
     .select("-reviews -publisher")
-    .exec(function (err, doc) {
+    .exec(function (err, game) {
       const response = {
         status: 204,
       };
@@ -92,30 +92,30 @@ module.exports.fullUpdateGame = function (req, res) {
       if (err) {
         response.status = 500;
         response.message = err;
-      } else if (!doc) {
+      } else if (!game) {
         response.status = 404;
-        response.message = { statusMessage: "resource not found!" };
+        response.message = { statusMessage: "page not found!" };
       }
       if (response.status !== 204) {
         res.status(response.status).json(response.message);
         return;
       }
 
-      fullUpdate(doc, req, res);
+      fullUpdate(game, req, res);
     });
 };
 
-function fullUpdate(doc, req, res) {
-  doc.title = req.body.title;
-  doc.year = parseInt(req.body.year);
-  doc.rate = parseInt(req.body.rate);
-  doc.price = parseFloat(req.body.price);
-  doc.minPlayers = parseInt(req.body.minPlayers);
-  doc.maxPlayers = parseInt(req.body.maxPlayers);
-  doc.minAge = parseInt(req.body.minAge);
-  doc.designers = req.body.designers;
+function fullUpdate(game, req, res) {
+  game.title = req.body.title;
+  game.year = parseInt(req.body.year);
+  game.rate = parseInt(req.body.rate);
+  game.price = parseFloat(req.body.price);
+  game.minPlayers = parseInt(req.body.minPlayers);
+  game.maxPlayers = parseInt(req.body.maxPlayers);
+  game.minAge = parseInt(req.body.minAge);
+  game.designers = req.body.designers;
 
-  doc.save(function (err, updatedGame) {
+  game.save(function (err, updatedGame) {
     const response = {
       status: 204,
       message: updatedGame,
@@ -126,11 +126,12 @@ function fullUpdate(doc, req, res) {
       response.message = err;
     }
 
-    res.status(response.status).json(response.doc);
+    res.status(response.status).json(response.message);
+    // res.status(200).json("response is called");
   });
 }
 module.exports.partialUpdateGame = function (req, res) {
-  console.log(`performing patch update for ${req.params.gameId}`);
+  console.log("partially updated :" + req.params.gameId);
 
   Game.findById(req.params.gameId)
     .select("-reviews -publisher")
@@ -196,18 +197,20 @@ function partialUpdate(doc, req, res) {
   });
 }
 module.exports.gamesDeleteOne = function (req, res) {
-  const gameID = req.params.gameID;
-  Game.findByIdAndRemove(gameID).exec(function (err, deletedGame) {
+  console.log("game deleted");
+  const gameID = req.params.gameId;
+  Game.findByIdAndRemove(gameID, function (err, game) {
     const response = {
       status: 204,
-      message: deletedGame,
+      message: game,
     };
+    console.log("game deleted2");
 
     if (err) {
       console.log("Error finding game");
       response.status = 500;
       response.message = err;
-    } else if (!deletedGame) {
+    } else if (!game) {
       response.status = 404;
       response.message = { message: "Game ID not found" };
     }

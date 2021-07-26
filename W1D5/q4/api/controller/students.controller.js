@@ -41,7 +41,7 @@ module.exports.getAll = function (req, res) {
 };
 
 module.exports.getById = function (req, res) {
-  console.log("returning student with id" + req.params.studentId);
+  console.log("returning student with id : " + req.params.studentId);
 
   Student.findById(req.params.studentId).exec(function (err, doc) {
     const response = {
@@ -60,7 +60,7 @@ module.exports.getById = function (req, res) {
   });
 };
 module.exports.createStudent = function (req, res) {
-  console.log(`creating student`, req.body);
+  console.log("creating student" + req.body);
   const student = {};
   student.name = req.body.name;
   student.grade = req.body.grade;
@@ -80,13 +80,15 @@ module.exports.createStudent = function (req, res) {
   });
 };
 module.exports.studentFullUpdate = function (req, res) {
-  console.log(`updating student with id ${req.params.studentId}`);
+  console.log("updating student with id : " + req.params.studentId);
 
   Student.findById(req.params.studentId).exec(function (err, doc) {
     const response = {
-      status: 200,
+      status: 204,
       message: doc,
     };
+    console.log(doc);
+    console.log("body : ", req.body);
     if (err) {
       response.status = 500;
       response.message = err;
@@ -95,19 +97,18 @@ module.exports.studentFullUpdate = function (req, res) {
       response.message = { message: "resource not found" };
     }
 
-    if (response.status !== 200) {
+    if (response.status !== 204) {
       res.status(response.status).json(response.message);
-      return;
+    } else {
+      updateStudent(doc, req, res);
     }
-
-    updateStudent(doc, req, res);
   });
 };
 
 function updateStudent(student, req, res) {
   student.name = req.body.name;
   student.grade = req.body.grade;
-
+  student.courses = [];
   student.save(function (err, update) {
     const response = {
       status: 204,
@@ -124,7 +125,7 @@ function updateStudent(student, req, res) {
 }
 
 module.exports.partialUpdateStudent = function (req, res) {
-  console.log(`patching student with id ${req.params.studentId}`);
+  console.log("patching student with id" + req.params.studentId);
 
   Student.findById(req.params.studentId).exec(function (err, doc) {
     const response = {
@@ -171,16 +172,22 @@ function partialUpdate(student, req, res) {
   });
 }
 
-module.exports.delete = function (req, res) {
+module.exports.deleteStudent = function (req, res) {
   console.log("deleting student with id" + req.params.studentId);
-  Student.findByIdAndRemove(req.params.studentId, function (err, doc) {
-    const response = {
-      status: 201,
-    };
-    if (err) {
-      response.status = 500;
-      response.message = err;
+  Student.findByIdAndRemove(
+    req.params.studentId,
+    function (err, deletedStudent) {
+      const response = {
+        status: 204,
+      };
+      if (err) {
+        response.status = 500;
+        response.message = err;
+      } else if (!deletedStudent) {
+        response.status = 404;
+        response.message = { message: "student id not found" };
+      }
+      res.status(response.status).json(response.message);
     }
-    res.status(response.status).json(response.message);
-  });
+  );
 };

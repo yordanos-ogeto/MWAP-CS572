@@ -4,13 +4,9 @@ const publisherSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
-  location: {
-    address: String,
-    coordinate: {
-      type: [Number],
-      index: "2dshere",
-    },
+  country: {
+    type: String,
+    require: true,
   },
 });
 const gameSchema = new mongoose.Schema({

@@ -10,7 +10,8 @@ router
 router
   .route("/games/:gameId")
   .get(controllerGame.gameGetOne)
-  .put(controllerGame.fullUpdateGame)
+  .post(controllerGame.addOneGame)
+  .put(controllerGame.fullyUpdateGame)
   .patch(controllerGame.partialUpdateGame)
   .delete(controllerGame.gamesDeleteOne);
 
