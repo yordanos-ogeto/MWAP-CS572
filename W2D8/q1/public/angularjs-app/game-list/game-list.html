@@ -1,0 +1,6 @@
+<h1>{{gameCtrl.title}}</h1>
+<ul>
+  <li ng-repeat="gameElm in gameCtrl.games">
+    <a href="#!/games/{{gameElm._id}}">{{gameElm.title}}</a>
+  </li>
+</ul>

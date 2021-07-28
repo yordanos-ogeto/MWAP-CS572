@@ -1,0 +1,6 @@
+<h1>{{swimCtrl.teamName}}</h1>
+<ul>
+  <li ng-repeat="swimElm in swimCtrl.swims">
+    <a href="#!/swimmerTeam/{{swimElm._id}}">{{swimElm.teamName}}</a>
+  </li>
+</ul>
