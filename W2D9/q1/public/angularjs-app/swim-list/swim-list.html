@@ -1,0 +1,82 @@
+<h1>{{swimCtrl.teamName}}</h1>
+<ul>
+  <li ng-repeat="swimElm in swimCtrl.swims">
+    <a href="#!/swimmerTeam/{{swimElm._id}}">{{swimElm.teamName}}</a>
+    <button
+      ng-click="swimCtrl.delete(swimElm._id)"
+      style="background-color: palevioletred"
+    >
+      Delete
+    </button>
+    <button>
+      <a
+        href="/#!/swimmerTeam/{{swimElm._id}}/edit"
+        style="background-color: aquamarine"
+        >Edit</a
+      >
+    </button>
+  </li>
+</ul>
+
+<div>
+  <form name="swimForm" ng-submit="vm.AddClub()">
+    Add Club here
+    <br />Club Name:
+    <input
+      type="text"
+      name="teamName"
+      required
+      ng-model="vm.swimData.teamName"
+      style="color: black"
+    />
+    <br />
+    Score:
+    <input
+      type="text"
+      name="score"
+      pattern="[0-9][1-9]?"
+      required
+      ng-model="vm.swimData.score"
+      style="color: black"
+    />
+    <span
+      ng-show="vm.swimForm.score.$dirty && vm.swimForm.score.$invalid"
+      style="color: aliceblue"
+      >Score must be from 1-99</span
+    >
+    <br />
+    Year:<input
+      type="text"
+      name="year"
+      required
+      ng-model="vm.swimData.year"
+      style="color: black"
+    />
+    <br />
+    Rank:
+    <input
+      type="text"
+      name="rank"
+      required
+      ng-model="vm.swimData.rank"
+      style="color: black"
+      pattern="[1-5]{1}"
+    />
+    <span
+      ng-if="vm.swimForm.rank.$dirty && vm.swimForm.rank.$invalid"
+      style="color: aliceblue"
+      >Ratting from 1-5</span
+    >
+    <br />
+    Swimmer Member:
+    <input
+      type="text"
+      name="swimmer"
+      required
+      ng-model="vm.swimData.swimmer"
+      style="color: black"
+    />
+    <br />
+    <button type="submit" class="btn-success">Add club</button>
+  </form>
+</div>

@@ -6,4 +6,16 @@ function SwimController(SwimFactory) {
     console.log(response);
     vm.swims = response.data;
   });
+  vm.swimData = {};
+  vm.AddClub = function () {
+    SwimFactory.AddOneClub(swimCtrl.swimData).then(function (response) {
+      $route.reload();
+    });
+  };
+
+  vm.delete = function (id) {
+    SwimFactory.deleteClub(id).then(function (response) {
+      $route.reload();
+    });
+  };
 }

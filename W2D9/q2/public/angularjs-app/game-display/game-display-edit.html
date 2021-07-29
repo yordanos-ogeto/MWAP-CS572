@@ -1,0 +1,84 @@
+<!-- <h1>{{vm.game.title}}</h1> -->
+<h1>Edit Information </h1>
+
+<p>
+    <form name="vm.gameForm" ng-submit="vm.edit()">
+      Edit Game   
+<br>
+   Title:
+        <input
+          type="text"
+          name="=title"
+          required
+          ng-model="vm.formGame.title"
+          style="color: black"
+        />
+        <br />
+        Price:
+        <input
+          type="text"
+          name="=price"
+          ng-model="vm.formGame.price"
+          style="color: black"
+        /><br />
+        Year:
+        <input
+          type="text"
+          name="=year"
+          ng-model="vm.formGame.year"
+          style="color: black"
+        /><br />
+        Rate:
+        <input
+          type="text"
+          name="rate"
+          ng-model="vm.formGame.rate"
+          style="color: black"
+          pattern="[1-5]{1}"
+        />
+        <!-- <span ng-show="vm.gameForm.rate.$dirty && vm.gameForm.rate.$invalid"
+          >Minimum number of rating from 1-5</span
+        ><br /> -->
+        <br>
+        MinimumPlayers:
+        <input
+          type="text"
+          name="minPlayer"
+          ng-model="vm.formGame.minPlayer"
+          style="color: black"
+          pattern="[1-9][0-9]?"
+        />
+        <!-- <span ng-show="vm.gameForm.minPlayer.$dirty && vm.gameForm.minPlayer.$invalid"
+          >Minimum number of players from 1-99</span
+        ><br /> -->
+        <br>
+        MaximumPlayers:
+        <input
+          type="text"
+          name="maxPlayer"
+          ng-model="vm.formGame.maxPlayer"
+          style="color: black"
+          pattern="[1-9][0-9]?"
+        />
+        <!-- <span ng-show="gameCtrl.gameForm.maxPlayer.$dirty && gameCtrl.gameForm.maxPlayer.$invalid"
+          >Maximum number of players from 1-99</span
+        ><br /> -->
+        <br>
+        Minimum Age:
+        <input
+          type="text"
+          name="minage"
+          ng-model="vm.formGame.minAge"
+          style="color: black"
+        /><br />
+        Designer:
+        <input
+          type="text"
+          name="designer"
+          ng-model="vm.formGame.designers"
+          style="color: black"
+        />
+        <br />
+        <button type="submit" class="btn-success">EditGame</button>
+      </form>
+</p>

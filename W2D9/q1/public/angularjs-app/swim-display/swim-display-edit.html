@@ -1,0 +1,67 @@
+<h1>
+  Edit Information about Swmimmer Club
+  <p>{{swimCtrl.swim.teamName}}</p>
+</h1>
+<p>
+    <form name="swimForm" ng-submit="vm.edit()" >
+        edit Club here
+        <br />Club Name:
+        <input
+          type="text"
+          name="teamName"
+          required
+          ng-model="vm.swimData.teamName"
+          style="color: black"
+          value="swimCtrl.swimData.teamName"
+        />
+        <br />
+        Score:
+        <input
+          type="text"
+          name="score"
+          pattern="[0-9][1-9]?"
+          required
+          ng-model="vm.swimData.score"
+          style="color: black"
+        />
+        <span
+          ng-show="vm.swimForm.score.$dirty && vm.swimForm.score.$invalid"
+          style="color: aliceblue"
+          >Score must be from 1-99</span
+        >
+        <br />
+        Year:<input
+          type="text"
+          name="year"
+          required
+          ng-model="vm.swimData.year"
+          style="color: black"
+        />
+        <br />
+        Rank:
+        <input
+          type="text"
+          name="rank"
+          required
+          ng-model="vm.swimData.rank"
+          style="color: black"
+          pattern="[1-5]{1}"
+        />
+        <span
+          ng-if="vm.swimForm.rank.$dirty && vm.swimForm.rank.$invalid"
+          style="color: aliceblue"
+          >Ratting from 1-5</span
+        >
+        <br />
+        Swimmer Member:
+        <input
+          type="text"
+          name="swimmer"
+          required
+          ng-model="vm.swimData.swimmer"
+          style="color: black"
+        />
+        <br />
+        <button type="submit" class="btn-success">Edit</button>
+      </form>
+</p>
