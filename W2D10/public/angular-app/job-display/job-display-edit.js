@@ -1,6 +1,6 @@
 angular.module("myApp").controller("JobDisplayEditController", jobController);
 
-function jobController(JobDataFactory, $routeParams, $route) {
+function jobController(JobDataFactory, $routeParams, $location) {
   const vm = this;
   vm.jobData = {};
 
@@ -9,11 +9,13 @@ function jobController(JobDataFactory, $routeParams, $route) {
   });
 
   vm.edit = function () {
+    console.log("edit", vm.jobData);
     JobDataFactory.updateOneJob($routeParams.id, vm.jobData).then(function (
       response
     ) {
       console.log(response);
-      $route.reload();
+      // $route.reload();
+      $location.path("/");
     });
   };
 }

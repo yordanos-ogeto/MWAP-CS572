@@ -19,7 +19,7 @@ function jobfactory($http) {
       .catch(failed);
   }
   function addOne(job) {
-    return $http.get("api/jobs/", job).then(complete).catch(failed);
+    return $http.post("api/jobs/", job).then(complete).catch(failed);
   }
 
   function deleteOne(id) {
@@ -30,7 +30,7 @@ function jobfactory($http) {
   }
   function updateOne(id, job) {
     return $http
-      .get("api/jobs/" + id, job)
+      .put("api/jobs/" + id, job)
       .then(complete)
       .catch(failed);
   }

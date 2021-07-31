@@ -11,12 +11,14 @@
 <ul>
   <li ng-repeat="jobElm in vm.jobs">
     <a href="/#!/jobs/{{jobElm._id}}">{{jobElm.title}}</a>
-    <button class="btn btn-danger" ng-click="vm.delete()">Delete</button>
-    <button><a href="/#!/jobs/{{vm.jobElm._id}}/edit">Edit</a></button>
+    <button class="btn btn-danger" ng-click="vm.delete(jobElm._id)">
+      Delete
+    </button>
+    <button><a href="/#!/jobs/{{jobElm._id}}/edit">Edit</a></button>
   </li>
 </ul>
 
-<form name="vm.jobForm" ng-submit="vms.addOne()">
+<form name="vm.jobForm" ng-submit="vm.addOne()">
   To add a new job please fill in all the fields below:<br />
   Title:
   <input
