@@ -1,0 +1,12 @@
+<h1>Information about the Jobs:</h1>
+
+<p>
+  Salary: {{vm.jobs.salary | currency}} <br />
+  Description : {{vm.jobs.description}} <br />
+  Experience : {{vm.jobs.experience}} <br />
+  PostDate : {{vm.jobs.postDate}} <br />
+  Skill :<span ng-repeat="skills in vm.jobs.skill track by $index">
+    {{skills}}.</span
+  >
+  <br />
+</p>

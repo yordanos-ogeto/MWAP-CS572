@@ -8,12 +8,15 @@ function config($routeProvider) {
     })
     .when("/games/:id", {
       templateUrl: "angularjs-app/game-display/game-display.html",
-      controller: "GamesDisplayController",
+      controller: "gamesDisplayController",
       controllerAs: "gameCtrl",
     })
     .when("/games/:id/edit", {
       templateUrl: "angularjs-app/game-display/game-display-edit.html",
-      controller: "GamesDisplayEditController",
+      controller: "GameDisplayEditController",
       controllerAs: "gameCtrl",
+    })
+    .otherwise({
+      redirectTo: "/",
     });
 }

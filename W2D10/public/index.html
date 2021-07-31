@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarColor02"
+          aria-controls="navbarColor02"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- <h1>Mean Job</h1> -->
+    <div ng-view></div>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-route/angular-route.js"></script>
+    <script src="angular-app/app.js"></script>
+    <script src="angular-app/job-data-factory/job-data-factory.js"></script>
+    <script src="angular-app/job-list/job-list-controll.js"></script>
+    <script src="angular-app/job-display/job-display-controller.js"></script>
+    <script src="angular-app/job-display/job-display-edit.js"></script>
+
+    <footer class="footer">
+      <p class="text-muted text-center">
+        <a href="https://compro.miu.edu" target="_blank">
+          <image
+            src="./image/miucomprologo.jpeg"
+            height="60"
+            alt="logo"
+          ></image>
+        </a>
+        <br />
+        <small class="text-black-50 text-center"
+          >&copy; 2021 Maharishi International University. All Rights Reserved.
+        </small>
+      </p>
+    </footer>
+  </body>
+</html>

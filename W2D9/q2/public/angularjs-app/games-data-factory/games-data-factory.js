@@ -22,13 +22,13 @@ function GamesFactory($http) {
   }
   function deleteOne(id) {
     return $http
-      .delete("/api/games" + id, game)
+      .delete("/api/games/" + id)
       .then(complete)
       .catch(failur);
   }
   function edit(id) {
     return $http
-      .put("/api/games" + id, game)
+      .put("/api/games/" + id, game)
       .then(complete)
       .catch(failur);
   }

@@ -1,10 +1,10 @@
-angular.module("meanGames").directive("gameRating", GameRating);
-function GameRating() {
+angular.module("meanGames").directive("gameRatingDirective", gameRating);
+function gameRating() {
   return {
     restrict: "E",
     templateUrl: "angularjs-app/game-rating/rating.html",
     bindToController: true,
-    controller: "GamesDisplayController",
+    controller: "gamesDisplayController",
     controllerAs: "rateCtr",
   };
 }

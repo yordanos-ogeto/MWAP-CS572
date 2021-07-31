@@ -1,0 +1,24 @@
+
+
+
+<p>
+    <div>     
+    <form name="vm.updateForm" ng-submit="vm.edit()">
+    
+        Title: 
+            <input type="text"  class="textBox" name="title" required ng-model="vm.jobData.title" style="color:black" value="vm.jobData.title"/><BR />
+        Salary: <input type="text" name="salary" class="textBox" required ng-model="vm.jobData.salary" style="color:black" value="vm.jobData.salary"/><BR />
+    
+        Description: <input type="text" class="textBox" name="description" required ng-model="vm.jobData.description" style="color:black" value="vm.jobData.description" />
+        <BR />
+    
+        Experience: <input type="text" class="textBox" name="experience" required ng-model="vm.jobData.experience"
+            style="color:black"value="vm.jobData.experience" /><BR />
+    
+    
+        <button type="submit" class="btn-success">Edit</button><BR />
+    
+    </form>
+    </div>
+    
+    </p>

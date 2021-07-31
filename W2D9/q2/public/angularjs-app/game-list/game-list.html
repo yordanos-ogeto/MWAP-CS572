@@ -1,8 +1,12 @@
 <h1>{{gameCtrl.title}}</h1>
 <ul>
   <li ng-repeat="gameElm in gameCtrl.games">
-    <a href="#!/games/{{gameElm._id}}">{{gameElm.title}}</a>
-    <button ng-click="vm.delete(gameElm._id)" style="background-color: pink">
+    <a href="/#!/games/{{gameElm._id}}">{{gameElm.title}}</a>
+    <button
+      class="btn-danger"
+      ng-click="gameCtrl.remove(gameElm._id)"
+      style="background-color: pink"
+    >
       Delete
     </button>
     <button>
@@ -14,14 +18,14 @@
     </button>
   </li>
 </ul>
-<form name="vm.gameForm" ng-submit="vm.addGame()">
+<form name="vm.gameForm" ng-submit="gameCtrl.addGame()">
   To add a new game fill in all the fields below <br />
   Title:
   <input
     type="text"
     name="=title"
     required
-    ng-model="vm.formGame.title"
+    ng-model="gameCtrl.formGame.title"
     style="color: black"
   />
   <br />
@@ -29,54 +33,57 @@
   <input
     type="text"
     name="=price"
-    ng-model="vm.formGame.price"
+    ng-model="gameCtrl.formGame.price"
     style="color: black"
   /><br />
   Year:
   <input
     type="text"
     name="=year"
-    ng-model="vm.formGame.year"
+    ng-model="gameCtrl.formGame.year"
     style="color: black"
   /><br />
   Rate:
   <input
     type="text"
     name="rate"
-    ng-model="vm.formGame.rate"
+    ng-model="gameCtrl.formGame.rate"
     style="color: black"
     pattern="[1-5]{1}"
   />
-  <span ng-show="vm.formGame.rate.$dirty && vm.formGame.rate.$invalid"
+  <span
+    ng-show="gameCtrl.formGame.rate.$dirty && gameCtrl.formGame.rate.$invalid"
     >Minimum number of rating from 1-5</span
   ><br />
   MinimumPlayers:
   <input
     type="text"
     name="minPlayer"
-    ng-model="vm.formGame.minPlayer"
+    ng-model="gameCtrl.formGame.minPlayer"
     style="color: black"
     pattern="[1-9][0-9]?"
   />
-  <span ng-show="vm.formGame.minPlayer.$dirty && vm.formGame.minPlayer.$invalid"
+  <span
+    ng-show="gameCtrl.formGame.minPlayer.$dirty && gameCtrl.formGame.minPlayer.$invalid"
     >Minimum number of players from 1-99</span
   ><br />
   MinimumPlayers:
   <input
     type="text"
     name="maxPlayer"
-    ng-model="vm.formGame.maxPlayer"
+    ng-model="gameCtrl.formGame.maxPlayer"
     style="color: black"
     pattern="[1-9][0-9]?"
   />
-  <span ng-show="vm.formGame.maxPlayer.$dirty && vm.formGame.maxPlayer.$invalid"
+  <span
+    ng-show="gameCtrl.formGame.maxPlayer.$dirty && gameCtrl.formGame.maxPlayer.$invalid"
     >Maximum number of players from 1-99</span
   ><br />
   Minimum Age:
   <input
     type="text"
     name="minage"
-    ng-model="vm.formGame.minAge"
+    ng-model="gameCtrl.formGame.minAge"
     style="color: black"
   /><br />
   Designer:

@@ -1,0 +1,68 @@
+<!-- <h1>{{vm.jobs.title}}
+
+</h1>
+<p>
+    <div> Price : {{vm.jobData.salary| currency}}</div>
+    <div> Description : {{vm.jobData.description}}</div>
+    <div> Experience : {{vm.jobData.experience}}</div>
+    <div> Skill : {{vm.jobData.skill}}</div>
+</p> -->
+<h2>List of Job titles</h2>
+<ul>
+  <li ng-repeat="jobElm in vm.jobs">
+    <a href="/#!/jobs/{{jobElm._id}}">{{jobElm.title}}</a>
+    <button class="btn btn-danger" ng-click="vm.delete()">Delete</button>
+    <button><a href="/#!/jobs/{{vm.jobElm._id}}/edit">Edit</a></button>
+  </li>
+</ul>
+
+<form name="vm.jobForm" ng-submit="vms.addOne()">
+  To add a new job please fill in all the fields below:<br />
+  Title:
+  <input
+    type="text"
+    class="textBox"
+    name="title"
+    required
+    ng-model="vm.jobData.title"
+    style="color: black"
+  /><br />
+  Salary:
+  <input
+    type="text"
+    class="textBox"
+    name="salary"
+    required
+    ng-model="vm.jobData.salary"
+    style="color: black"
+  />
+  <br />
+  Description:
+  <input
+    class="textBox"
+    type="text"
+    name="description"
+    required
+    ng-model="vm.jobData.description"
+    style="color: black"
+  /><br />
+  Experience:
+  <input
+    class="textBox"
+    type="text"
+    name="experience"
+    required
+    ng-model="vm.jobData.experience"
+    style="color: black"
+  /><br />
+  Skill:
+  <input
+    class="textBox"
+    type="text"
+    name="skill"
+    required
+    ng-model="vm.jobData.skill"
+    style="color: black"
+  /><br />
+  <button type="submit" class="btn-success">Add Job</button><br />
+</form>
