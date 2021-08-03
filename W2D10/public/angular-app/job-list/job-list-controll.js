@@ -1,6 +1,6 @@
-angular.module("myApp").controller("JobDataControll", gameControll);
+angular.module("myApp").controller("JobDataControll", dataControll);
 
-function gameControll(JobDataFactory, $route) {
+function dataControll(JobDataFactory, $route) {
   const vm = this;
   JobDataFactory.getAllJobs().then(function (response) {
     console.log("response ", response);
@@ -9,7 +9,8 @@ function gameControll(JobDataFactory, $route) {
   });
   vm.jobData = {};
   vm.addOne = function () {
-    // console.log(jobData);
+    console.log("add here");
+    console.log(vm.jobData);
     JobDataFactory.addOneJob(vm.jobData).then(function (response) {
       $route.reload();
     });
