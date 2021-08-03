@@ -4,17 +4,17 @@ function config($routeProvider) {
     .when("/", {
       templateUrl: "angularjs-app/game-list/game-list.html",
       controller: "GamesController",
-      controllerAs: "gameCtrl",
+      controllerAs: "vm",
     })
     .when("/games/:id", {
       templateUrl: "angularjs-app/game-display/game-display.html",
       controller: "gamesDisplayController",
-      controllerAs: "gameCtrl",
+      controllerAs: "vm",
     })
     .when("/games/:id/edit", {
       templateUrl: "angularjs-app/game-display/game-display-edit.html",
       controller: "GameDisplayEditController",
-      controllerAs: "gameCtrl",
+      controllerAs: "vm",
     })
     .otherwise({
       redirectTo: "/",

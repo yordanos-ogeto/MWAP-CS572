@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
 require("./games-model");
 require("./user-model");
 const dbURL = process.env.db_URL + process.env.DB_NAME;

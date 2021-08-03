@@ -24,4 +24,6 @@ router
   .delete(publisherController.publisherDeleteOne);
 
 router.route("/users").post(userController.register);
+router.route("/users/login").post(userController.login);
+
 module.exports = router;
