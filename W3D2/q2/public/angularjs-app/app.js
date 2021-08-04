@@ -1,33 +1,30 @@
-angular
-  .module("swimmerClub", ["ngRoute", "angular-jwt"])
-  .config(config)
-  .run(run);
+angular.module("meanGames", ["ngRoute", "angular-jwt"]).config(config).run(run);
 function config($routeProvider) {
   $routeProvider
     .when("/", {
       templateUrl: "angularjs-app/welcome/welcome.html",
     })
-    .when("/swimmerTeam", {
-      templateUrl: "angularjs-app/swim-list/swim-list.html",
-      controller: "SwimmersController",
+    .when("/games", {
+      templateUrl: "angularjs-app/game-list/game-list.html",
+      controller: "GamesController",
       controllerAs: "vm",
       access: { restricted: false },
     })
-    .when("/swimmerTeam/:id", {
-      templateUrl: "angularjs-app/swim-display/swim-display.html",
-      controller: "SwimmerDisplayController",
+    .when("/games/:id", {
+      templateUrl: "angularjs-app/game-display/game-display.html",
+      controller: "gamesDisplayController",
       controllerAs: "vm",
       access: { restricted: false },
     })
     .when("/register", {
-      templateUrl: "angularjs-app/register/register.html",
+      templateUrl: "angularjs-app/registar/registor.html",
       controller: "RegisterController",
       controllerAs: "vm",
       access: { restricted: false },
     })
-    .when("/swimmerTeam/:id/edit", {
-      templateUrl: "angularjs-app/swim-display/swim-display-edit.html",
-      controller: "SwimDisplayEditController",
+    .when("/games/:id/edit", {
+      templateUrl: "angularjs-app/game-display/game-display-edit.html",
+      controller: "GamesDisplayEditController",
       controllerAs: "vm",
       access: { restricted: true },
     })

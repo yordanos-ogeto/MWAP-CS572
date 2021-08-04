@@ -1,9 +1,9 @@
 <h1>{{swimCtrl.teamName}}</h1>
 <ul>
-  <li ng-repeat="swimElm in swimCtrl.swims">
+  <li ng-repeat="swimElm in vm.swims">
     <a href="#!/swimmerTeam/{{swimElm._id}}">{{swimElm.teamName}}</a>
     <button
-      ng-click="swimCtrl.delete(swimElm._id)"
+      ng-click="vm.delete(swimElm._id)"
       style="background-color: palevioletred"
     >
       Delete

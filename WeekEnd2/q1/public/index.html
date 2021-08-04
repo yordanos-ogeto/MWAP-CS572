@@ -1,36 +1,41 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="swimmerClub">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Swimmer Team</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
 
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/custom.css" />
+  </head>
+  <body ng-app="swimmerClub">
+    <games-navigation></games-navigation>
+    <div ng-view class="container" style="padding: 100px"></div>
+    <games-footer></games-footer>
+
     <script src="node_modules/angular/angular.js"></script>
     <script src="node_modules/angular-route/angular-route.js"></script>
+    <script src="node_modules/angular-jwt/dist/angular-jwt.js"></script>
+
     <script src="angularjs-app/app.js"></script>
     <script src="angularjs-app/swim-data-factory/swim-data-factory.js"></script>
     <script src="angularjs-app/swim-display/swim-display-controller.js"></script>
     <script src="angularjs-app/swim-list/swim-list-controller.js"></script>
     <script src="angularjs-app/swim-display/swim-display-edit-controller.js"></script>
-  </head>
-  <body ng-view>
-    <h1>Iowa Swimmers.</h1>
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted text-center">
-          <a href="https://compro.miu.edu" target="_blank">
-            <img src="image/image.PNG" height="60" alt="MIU Compro"
-          /></a>
-          <br />
-          <small class="text-black-50 text-center"
-            >&copy;2021 Iowa Swimmer clubs.</small
-          >
-        </p>
-      </div>
-    </footer>
+    <script src="angularjs-app/directive/footer/footer.js"></script>
+    <script src="angularjs-app/directive/navigator/navigation.js"></script>
+    <script src="angularjs-app/login/login.js"></script>
+    <script src="angularjs-app/profile/profile-controller.js"></script>
+    <script src="angularjs-app/register/register-controller.js"></script>
+    <script src="angularjs-app/swim-data-factory/authentication-factory.js"></script>
+    <script src="angularjs-app/swim-data-factory/user-factory.js"></script>
+
     <!-- <script
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
       type="text/javascript"

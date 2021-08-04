@@ -1,6 +1,6 @@
 <h1>
   Edit Information about Swmimmer Club
-  <p>{{swimCtrl.swim.teamName}}</p>
+  <p>{{vm.swim.teamName}}</p>
 </h1>
 <p>
     <form name="swimForm" ng-submit="vm.edit()" >
@@ -12,7 +12,7 @@
           required
           ng-model="vm.swimData.teamName"
           style="color: black"
-          value="swimCtrl.swimData.teamName"
+          value="vm.swimData.teamName"
         />
         <br />
         Score:

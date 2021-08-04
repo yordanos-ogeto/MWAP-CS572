@@ -1,6 +1,7 @@
 const express = require("express");
 const controllerSwimmer = require("../controller/swimmerTeam.controller");
 const memberController = require("../controller/teamMember.Controller");
+const userController = require("../controller/users.controller");
 const router = express.Router();
 router
   .route("/swimmerTeam")
@@ -24,4 +25,7 @@ router
   .get(memberController.GetOneMember)
   .put(memberController.memberFUllUpdateOne)
   .delete(memberController.DeleteOne);
+
+router.route("/users").post(userController.register);
+router.route("/login").post(userController.login);
 module.exports = router;

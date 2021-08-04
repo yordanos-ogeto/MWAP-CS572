@@ -9,7 +9,7 @@ function SwimDisplayController(SwimFactory, $routeParams, $route) {
   SwimFactory.getOneSwimmerClub($routeParams.id).then(function (response) {
     console.log(response.data);
 
-    vm.swimData = response.data;
+    vm.swimData = response;
   });
 
   vm.edit = function () {

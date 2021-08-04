@@ -1,0 +1,18 @@
+<h1>{{vm.game.title}}
+</h1>
+<p>
+    <form name="gameForm" ng-submit="vm.edit()">
+        Edit Game
+        <br/>Title: <input type="text" name='title' required ng-model="vm.gameData.title" style="color: black;" value="vm.gameData.title" />
+        <br/> Price: <input type="text" name='price' required ng-model="vm.gameData.price" style="color: black;" value="vm.gameData.price" />
+        <br/> Year:<input type="text" name='year' required ng-model="vm.gameData.year" style="color: black;" value="vm.gameData.year" />
+        <br/> Rate: <input type="text" name='rate' required ng-model="vm.gameData.rate" style="color: black;" pattern="[1-5]{1}" value="vm.gameData.rate" />
+        <span ng-if="vm.gameForm.rate.$dirty && vm.gameForm.rate.$invalid" style="color: aliceblue;">Need proper ratting</span>
+        <br/>minPlayers: <input type="text" name='minPlayers' required ng-model="vm.gameData.minPlayers" style="color: black;" pattern="^[1-9][0-9]?$" value="vm.gameData.minPlayers" />
+        <br/> Max players: <input type="text" name='maxPlayers' required ng-model="vm.gameData.maxPlayers" style="color: black;" pattern="^[1-9][0-9]?$" value="vm.gameData.maxPlayers" />
+        <br/> minAge: <input type="text" name='minAge' required ng-model="vm.gameData.minAge" style="color: black;" value="vm.gameData.minAge" />
+        <br/> designer: <input type="text" name='designer' required ng-model="vm.gameData.designers" style="color: black;" value="vm.gameData.designers" />
+        <br/>
+        <button type="submit" class="btn-sucess">Update game</button>
+    </form>
+</p>
